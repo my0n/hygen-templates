@@ -9,7 +9,7 @@ public class ServerOptionsValidator : AbstractValidator<ServerOptions>
 {
     public ServerOptionsValidator()
     {
-<% if (usesFileProvider) { -%>
+<% if (features.includes('File provider')) { -%>
         RuleFor(x => x.DataPath)
             .NotEmpty();
 

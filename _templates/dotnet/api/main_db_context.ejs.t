@@ -1,5 +1,5 @@
 ---
-to: "<%= usesEF ? `${project}/src/${project}/Database/ApplicationDbContext.cs` : null %>"
+to: "<%= features.includes('Entity Framework') ? `${project}/src/${project}/Database/ApplicationDbContext.cs` : null %>"
 ---
 using Microsoft.EntityFrameworkCore;
 using <%= project %>.Database.Entities;

@@ -1,5 +1,5 @@
 ---
-to: "<%= usesFileProvider ? `${project}/src/${project}/Files/Repositories/IApplicationDataFileRepository.cs` : null %>"
+to: "<%= features.includes('File provider') ? `${project}/src/${project}/Files/Repositories/IApplicationDataFileRepository.cs` : null %>"
 ---
 namespace <%= project %>.Files.Repositories;
 

@@ -1,5 +1,5 @@
 ---
-to: "<%= usesControllers ? `${project}/src/${project}/Models/WeatherForecast.cs` : null %>"
+to: "<%= features.includes('Controllers') ? `${project}/src/${project}/Models/WeatherForecast.cs` : null %>"
 ---
 namespace <%= project %>.Models;
 

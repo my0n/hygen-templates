@@ -1,5 +1,5 @@
 ---
-to: "<%= usesEF ? `${project}/src/${project}/Database/Entities/DbCity.cs` : null %>"
+to: "<%= features.includes('Entity Framework') ? `${project}/src/${project}/Database/Entities/DbCity.cs` : null %>"
 ---
 namespace <%= project %>.Database.Entities;
 

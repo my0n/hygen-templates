@@ -5,7 +5,7 @@ namespace <%= project %>.Configuration;
 
 public class ServerOptions
 {
-<% if (usesFileProvider) { -%>
+<% if (features.includes('File provider')) { -%>
     public string DataPath { get; set; } = "/data";
 
 <% } -%>

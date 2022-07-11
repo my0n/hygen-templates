@@ -1,5 +1,5 @@
 ---
-to: "<%= usesFileProvider ? `${project}/src/${project}/Files/FileProviders/IApplicationDataFileProvider.cs` : null %>"
+to: "<%= features.includes('File provider') ? `${project}/src/${project}/Files/FileProviders/IApplicationDataFileProvider.cs` : null %>"
 ---
 using Microsoft.Extensions.FileProviders;
 

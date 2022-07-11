@@ -7,12 +7,7 @@ const getApplier = (prompter, args, results) => {
 
 module.exports = {
   prompt: async ({ prompter, args }) => {
-    const results = {
-      usesControllers: true,
-      usesEF: false,
-      usesFileProvider: false,
-      usesHealthChecks: true
-    };
+    const results = {};
     const apply = getApplier(prompter, args, results);
 
     await apply({
@@ -28,27 +23,26 @@ module.exports = {
     });
 
     await apply({
-      type: 'confirm',
-      name: 'usesControllers',
-      message: "Use controllers?"
+      type: 'multiselect',
+      name: 'features',
+      message: 'Select which features to include',
+      hint: 'Use <space> to select, <return> to submit',
+      choices: [
+        { name: 'Controllers', value: "Controllers", hint: "Adds the WeatherForecastController and Swashbuckle" },
+        { name: 'Entity Framework', value: "Entity Framework", hint: "Adds Entity Framework with some example code-first entity definitions" },
+        { name: 'File provider', value: "File provider", hint: "Adds a file provider" },
+        { name: 'Health checks', value: "Health checks", hint: "Adds health checks, including support for other enabled features" }
+      ]
     });
 
     await apply({
-      type: 'confirm',
-      name: 'usesEF',
-      message: "Use Entity Framework?"
-    });
-
-    await apply({
-      type: 'confirm',
-      name: 'usesFileProvider',
-      message: "Create an example file provider?"
-    });
-
-    await apply({
-      type: 'confirm',
-      name: 'usesHealthChecks',
-      message: "Use health checks?"
+      type: 'multiselect',
+      name: 'ci',
+      message: 'Select which CI options to enable',
+      hint: 'Use <space> to select, <return> to submit',
+      choices: [
+        { name: 'GitHub Actions', value: "GitHub Actions", hint: "Adds a build pipeline for the project" }
+      ]
     });
 
     return results;

@@ -1,5 +1,5 @@
 ---
-to: "<%= usesEF ? `${project}/src/${project}/Database/EntityConfigurations/DbCityConfiguration.cs` : null %>"
+to: "<%= features.includes('Entity Framework') ? `${project}/src/${project}/Database/EntityConfigurations/DbCityConfiguration.cs` : null %>"
 ---
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

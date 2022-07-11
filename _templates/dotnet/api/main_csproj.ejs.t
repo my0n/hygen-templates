@@ -15,18 +15,18 @@ to: <%= project %>/src/<%= project %>/<%= project %>.csproj
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     <PackageReference Include="IL.FluentValidation.Extensions.Options" Version="10.0.1" />
-<% if (usesEF) { -%>
+<% if (features.includes('Entity Framework')) { -%>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
 <% } -%>
-<% if (usesEF && usesHealthChecks) { -%>
+<% if (features.includes('Entity Framework') && features.includes('Health checks')) { -%>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.6" />
 <% } -%>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
-<% if (usesControllers) { -%>
+<% if (features.includes('Controllers')) { -%>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
 <% } -%>
   </ItemGroup>
