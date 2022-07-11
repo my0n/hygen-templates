@@ -27,7 +27,7 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "<%= project %>.dll"]
 
 <% if (features.includes('Entity Framework')) { -%>
-FROM base AS migration
+FROM base AS migrations
 WORKDIR /app
 COPY --from=publish /app/db .
 ENTRYPOINT ./bundle --connection "$CONNECTION_STRING"
