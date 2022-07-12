@@ -13,9 +13,9 @@ env:
   DOTNET_VERSION: 6.0.x
   DOTNET_BUILD_CONFIGURATION: Release
 <% if (features.includes('CI/ghcr.io')) { -%>
-  DOCKER_IMAGE_NAME_APP: <%= dockerImageName %>
+  DOCKER_IMAGE_NAME_APP: <%= shortName %>
 <% if (features.includes('API/Entity Framework')) { -%>
-  DOCKER_IMAGE_NAME_MIGRATIONS: <%= dockerImageName %>-migrations
+  DOCKER_IMAGE_NAME_MIGRATIONS: <%= shortName %>-migrations
 <% } -%>
 <% } -%>
   DOCKER_PROJECT_DOCKERFILE: src/<%= project %>/Dockerfile

@@ -23,6 +23,12 @@ module.exports = {
     });
 
     await apply({
+      type: 'input',
+      name: 'shortName',
+      message: "Enter the short name (a lowercase, machine-friendly version of the project name)"
+    });
+
+    await apply({
       type: 'multiselect',
       name: 'features',
       message: 'Select which features to include',
@@ -37,16 +43,6 @@ module.exports = {
         { name: 'CI/ghcr.io', value: "CI/ghcr.io", hint: "Push docker images to ghcr.io" }
       ]
     });
-
-    if (results.features.includes('CI/ghcr.io')) {
-      await apply({
-        type: 'input',
-        name: 'dockerImageName',
-        message: 'Enter the name of the published docker image'
-      });
-    } else {
-      results['dockerImageName'] = "";
-    }
 
     return results;
   }
