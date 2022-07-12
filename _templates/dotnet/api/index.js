@@ -41,22 +41,11 @@ module.exports = {
     if (results.features.includes('CI/ghcr.io')) {
       await apply({
         type: 'input',
-        name: 'ghaAppDockerName',
-        message: 'Enter the name of the published app docker image'
+        name: 'dockerImageName',
+        message: 'Enter the name of the published docker image'
       });
-
-      if (results.features.includes('API/Entity Framework')) {
-        await apply({
-          type: 'input',
-          name: 'ghaMigrationsDockerName',
-          message: 'Enter the name of the published Entity Framework migrations docker image'
-        });
-      } else {
-        results['ghaMigrationsDockerName'] = "";
-      }
     } else {
-      results['ghaAppDockerName'] = "";
-      results['ghaMigrationsDockerName'] = "";
+      results['dockerImageName'] = "";
     }
 
     return results;

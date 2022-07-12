@@ -12,11 +12,11 @@ on:
 env:
   DOTNET_VERSION: 6.0.x
   DOTNET_BUILD_CONFIGURATION: Release
-<% if (ghaAppDockerName) { -%>
-  DOCKER_IMAGE_NAME_APP: <%= ghaAppDockerName %>
+<% if (features.includes('CI/ghcr.io')) { -%>
+  DOCKER_IMAGE_NAME_APP: <%= dockerImageName %>
+<% if (features.includes('API/Entity Framework')) { -%>
+  DOCKER_IMAGE_NAME_MIGRATIONS: <%= dockerImageName %>-migrations
 <% } -%>
-<% if (ghaMigrationsDockerName) { -%>
-  DOCKER_IMAGE_NAME_MIGRATIONS: <%= ghaMigrationsDockerName %>
 <% } -%>
   DOCKER_PROJECT_DOCKERFILE: src/<%= project %>/Dockerfile
 
