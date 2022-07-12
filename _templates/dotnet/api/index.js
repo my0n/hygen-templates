@@ -28,42 +28,24 @@ module.exports = {
       message: 'Select which features to include',
       hint: 'Use <space> to select, <return> to submit',
       choices: [
-        { name: 'Controllers', value: "Controllers", hint: "Adds the WeatherForecastController and Swashbuckle" },
-        { name: 'Entity Framework', value: "Entity Framework", hint: "Adds Entity Framework with some example code-first entity definitions" },
-        { name: 'File provider', value: "File provider", hint: "Adds a file provider" },
-        { name: 'Health checks', value: "Health checks", hint: "Adds health checks, including support for other enabled features" }
+        { name: 'API/Controllers', value: "API/Controllers", hint: "Adds the WeatherForecastController and Swashbuckle" },
+        { name: 'API/Entity Framework', value: "API/Entity Framework", hint: "Adds Entity Framework with some example code-first entity definitions" },
+        { name: 'API/File provider', value: "API/File provider", hint: "Adds a file provider" },
+        { name: 'API/Health checks', value: "API/Health checks", hint: "Adds health checks, including support for other enabled features" },
+        { name: 'CI/Dependabot', value: "CI/Dependabot", hint: "Adds a dependabot config" },
+        { name: 'CI/GitHub Actions', value: "CI/GitHub Actions", hint: "Adds a GitHub Actions build pipeline for the project" },
+        { name: 'CI/ghcr.io', value: "CI/ghcr.io", hint: "Push docker images to ghcr.io" }
       ]
     });
 
-    await apply({
-      type: 'multiselect',
-      name: 'ci',
-      message: 'Select which CI options to enable',
-      hint: 'Use <space> to select, <return> to submit',
-      choices: [
-        { name: 'Dependabot', value: "Dependabot", hint: "Adds a dependabot config" },
-        { name: 'GitHub Actions', value: "GitHub Actions", hint: "Adds a GitHub Actions build pipeline for the project" }
-      ]
-    });
-
-    if (results.ci.includes('GitHub Actions')) {
-      await apply({
-        type: 'multiselect',
-        name: 'ghaArtifactRepos',
-        message: 'Select where to push build results from the GitHub actions pipeline',
-        hint: 'Use <space> to select, <return> to submit',
-        choices: [
-          { name: 'GitHub', value: "GitHub", hint: "Push docker images to ghcr.io" }
-        ]
-      });
-
+    if (results.features.includes('CI/ghcr.io')) {
       await apply({
         type: 'input',
         name: 'ghaAppDockerName',
         message: 'Enter the name of the published app docker image'
       });
 
-      if (results.features.includes('Entity Framework')) {
+      if (results.features.includes('API/Entity Framework')) {
         await apply({
           type: 'input',
           name: 'ghaMigrationsDockerName',
@@ -73,7 +55,6 @@ module.exports = {
         results['ghaMigrationsDockerName'] = "";
       }
     } else {
-      results['ghaArtifacts'] = [];
       results['ghaAppDockerName'] = "";
       results['ghaMigrationsDockerName'] = "";
     }

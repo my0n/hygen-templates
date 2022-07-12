@@ -15,7 +15,7 @@ RUN dotnet build "<%= project %>.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "<%= project %>.csproj" -c Release -o /app/publish
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
 RUN dotnet tool install --global dotnet-ef
 RUN dotnet ef migrations bundle --output /app/db/bundle
 RUN chmod u+x /app/db/bundle
@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "<%= project %>.dll"]
 
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
 FROM base AS migrations
 WORKDIR /app
 COPY --from=publish /app/db .

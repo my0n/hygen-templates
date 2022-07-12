@@ -3,17 +3,17 @@ to: <%= project %>/src/<%= project %>/Program.cs
 ---
 using FluentValidation;
 using IL.FluentValidation.Extensions.Options;
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
 using Microsoft.EntityFrameworkCore;
 <% } -%>
-<% if (features.includes('Health checks')) { -%>
+<% if (features.includes('API/Health checks')) { -%>
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 <% } -%>
 using <%= project %>.Configuration;
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
 using <%= project %>.Database;
 <% } -%>
-<% if (features.includes('File provider')) { -%>
+<% if (features.includes('API/File provider')) { -%>
 using <%= project %>.Files.FileProviders;
 using <%= project %>.Files.HealthChecks;
 using <%= project %>.Files.Repositories;
@@ -30,14 +30,14 @@ builder.Services.AddOptions<ServerOptions>("Server")
     .Configure(_ => { })
     .ValidateWithFluentValidator();
 
-<% if (features.includes('Controllers')) { -%>
+<% if (features.includes('API/Controllers')) { -%>
 // Controllers and Swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 <% } -%>
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
 // Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -45,19 +45,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 <% } -%>
-<% if (features.includes('File provider')) { -%>
+<% if (features.includes('API/File provider')) { -%>
 // Files
 builder.Services.AddTransient<IApplicationDataFileProvider, ApplicationDataFileProvider>();
 builder.Services.AddTransient<IApplicationDataFileRepository, ApplicationDataFileRepository>();
 
 <% } -%>
-<% if (features.includes('Health checks')) { -%>
+<% if (features.includes('API/Health checks')) { -%>
 // Health Checks and Monitoring
 builder.Services.AddHealthChecks()
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
     .AddDbContextCheck<ApplicationDbContext>()
 <% } -%>
-<% if (features.includes('File provider')) { -%>
+<% if (features.includes('API/File provider')) { -%>
     .AddCheck<ApplicationDataHealthCheck>("Application Data Directory")
 <% } -%>
     .AddCheck("Health Checks Endpoint", () => HealthCheckResult.Healthy("Health check endpoint responding to requests."));
@@ -65,7 +65,7 @@ builder.Services.AddHealthChecks()
 <% } -%>
 var app = builder.Build();
 
-<% if (features.includes('Controllers')) { -%>
+<% if (features.includes('API/Controllers')) { -%>
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -75,7 +75,7 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 
 <% } -%>
-<% if (features.includes('Health checks')) { -%>
+<% if (features.includes('API/Health checks')) { -%>
 app.MapHealthChecks("/healthz");
 
 <% } -%>

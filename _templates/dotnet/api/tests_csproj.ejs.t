@@ -11,7 +11,7 @@ to: <%= project %>/tests/<%= project %>.Tests/<%= project %>.Tests.csproj
   </PropertyGroup>
 
   <ItemGroup>
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
     <PackageReference Include="EntityFrameworkCore.Testing.NSubstitute" Version="4.0.0" />
 <% } -%>
     <PackageReference Include="FluentAssertions" Version="6.4.0" />

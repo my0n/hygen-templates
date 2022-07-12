@@ -1,5 +1,5 @@
 ---
-to: "<%= features.includes('File provider') ? `${project}/src/${project}/Files/Repositories/ApplicationDataFileRepository.cs` : null %>"
+to: "<%= features.includes('API/File provider') ? `${project}/src/${project}/Files/Repositories/ApplicationDataFileRepository.cs` : null %>"
 ---
 using <%= project %>.Files.FileProviders;
 

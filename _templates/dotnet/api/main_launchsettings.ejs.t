@@ -1,5 +1,5 @@
 ---
-to: <%= project %>/src/<%= project %>/Properties/launchSettings.json
+to: "<%= features.includes('API/Controllers') ? `${project}/src/${project}/Properties/launchSettings.json` : null %>"
 ---
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",

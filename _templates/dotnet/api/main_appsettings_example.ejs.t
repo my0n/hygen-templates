@@ -8,7 +8,7 @@ to: <%= project %>/src/<%= project %>/appsettings.Example.json
       "Microsoft.AspNetCore": "Warning"
     }
   },
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Port=5432;Database=<%= project %>;User Id=postgres;Password=password"
   },

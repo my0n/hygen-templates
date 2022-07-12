@@ -1,5 +1,5 @@
 ---
-to: "<%= ci.includes('Dependabot') ? `${project}/.github/dependabot.yml` : null %>"
+to: "<%= features.includes('CI/Dependabot') ? `${project}/.github/dependabot.yml` : null %>"
 ---
 updates:
 - package-ecosystem: nuget

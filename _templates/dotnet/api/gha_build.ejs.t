@@ -1,5 +1,5 @@
 ---
-to: "<%= ci.includes('GitHub Actions') ? `${project}/.github/workflows/build.yml` : null %>"
+to: "<%= features.includes('CI/GitHub Actions') ? `${project}/.github/workflows/build.yml` : null %>"
 ---
 name: build
 
@@ -62,7 +62,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: docker/setup-buildx-action@v1
 
-<% if (ghaArtifactRepos.includes('GitHub')) { -%>
+<% if (features.includes('CI/ghcr.io')) { -%>
     - name: Login to GitHub Packages Docker Registry
       if: github.ref == 'refs/heads/master'
       uses: docker/login-action@v1
@@ -81,7 +81,7 @@ jobs:
         push: true
         tags: "ghcr.io/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME_APP }}:latest,ghcr.io/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME_APP }}:${{ env.VERSION_NUMBER }}"
 
-<% if (features.includes('Entity Framework')) { -%>
+<% if (features.includes('API/Entity Framework')) { -%>
     - name: Build and push Entity Framework migrations docker image
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v2

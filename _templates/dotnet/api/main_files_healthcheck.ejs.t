@@ -1,5 +1,5 @@
 ---
-to: "<%= features.includes('File provider') && features.includes('Health checks') ? `${project}/src/${project}/Files/HealthChecks/ApplicationDataHealthCheck.cs` : null %>"
+to: "<%= features.includes('API/File provider') && features.includes('API/Health checks') ? `${project}/src/${project}/Files/HealthChecks/ApplicationDataHealthCheck.cs` : null %>"
 ---
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;

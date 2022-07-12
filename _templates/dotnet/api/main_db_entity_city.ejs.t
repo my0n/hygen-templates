@@ -1,5 +1,5 @@
 ---
-to: "<%= features.includes('Entity Framework') ? `${project}/src/${project}/Database/Entities/DbCity.cs` : null %>"
+to: "<%= features.includes('API/Entity Framework') ? `${project}/src/${project}/Database/Entities/DbCity.cs` : null %>"
 ---
 namespace <%= project %>.Database.Entities;
 

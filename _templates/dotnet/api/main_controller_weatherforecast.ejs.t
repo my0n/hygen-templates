@@ -1,5 +1,5 @@
 ---
-to: "<%= features.includes('Controllers') ? `${project}/src/${project}/Controllers/WeatherForecastController.cs` : null %>"
+to: "<%= features.includes('API/Controllers') ? `${project}/src/${project}/Controllers/WeatherForecastController.cs` : null %>"
 ---
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
